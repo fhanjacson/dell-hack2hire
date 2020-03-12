@@ -1,11 +1,12 @@
 .example-container {
-  width: 500px;
-  height: 300px;
+  width: 1000px;
+  height: 700px;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .example-sidenav-content {
   display: flex;
+
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -13,4 +14,15 @@
 
 .example-sidenav {
   padding: 20px;
+  width: 200px;
+}
+
+.drag-item {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border: 1px solid;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }

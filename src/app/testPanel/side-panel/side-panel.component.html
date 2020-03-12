@@ -1,21 +1,38 @@
-<div>
-  <ul *ngFor="let try of trys">
-    <li>{{ try }}</li>
-  </ul>
-</div>
-
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #drawer class="example-sidenav" mode="side">
+    <!-- side nav -->
+    <div
+      cdkDropList
+      [cdkDropListData]="numbers"
+      [cdkDropListConnectedTo]="otherList"
+      #firstList="cdkDropList"
+    >
+      <div cdkDrag class="drag-item" *ngFor="let number of numbers">
+        {{ number }}
+      </div>
+    </div>
+  </mat-sidenav>
 
   <div class="example-sidenav-content">
+    <!-- button to toggle side nav -->
     <button type="button" mat-button (click)="drawer.toggle()">
       Toggle sidenav
     </button>
+
+    <div>
+      <div
+        cdkDropList
+        [cdkDropListData]="otherNumbers"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListConnectedTo]="firstList"
+        #otherList="cdkDropList"
+      >
+        <div class="drag-item">
+          <div cdkDrag *ngFor="let number of otherNumbers">
+            {{ number }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</mat-drawer-container>
+</mat-sidenav-container>
