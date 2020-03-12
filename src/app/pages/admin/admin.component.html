@@ -27,13 +27,12 @@
           <div class="row my-3" *ngFor="let rows of layouts; let i = index">
             <div class="col">
               <div class="row">
-                <div class="col" *ngFor="let column of rows">
-                  <div cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="rows"
-                    class="placeholder_card">
+                <div class="col" *ngFor="let column of rows; let j = index">
+                  <div cdkDropList (cdkDropListDropped)="drop($event, j)" [cdkDropListData]="rows"
+                    class="placeholder_card"> {{rows}}
 
                     <div class="example-box" *ngIf="column != 0" cdkDrag>
                       Widget{{column}}
-
                       <div class="example-handle" cdkDragHandle>
                         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                           <path
