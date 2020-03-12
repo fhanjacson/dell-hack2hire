@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1>Select Layout</h1>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let layout of listOfLayouts">
+      <div class="row">
+        <div class="col">
+          {{layout.layout_name}}
+        </div>
+        <div class="col-auto">
+          <a [routerLink]="[ '/edit-layout',  layout.id]">
+            <button type="button" class="btn btn-primary mx-1">Edit</button>
+          </a>
+          <button type="button" class="btn btn-success mx-1">Apply</button>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn  btn-block btn-success">Add new layout</button>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+</div>
