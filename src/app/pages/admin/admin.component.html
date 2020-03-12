@@ -1,0 +1,21 @@
+<p>admin works!</p>
+
+<div class="container">
+  <div class="row my-3" *ngFor="let rows of layouts; let i = index">
+    <div class="col">
+      <div class="row">
+        <div class="col" *ngFor="let column of rows">
+          <div class="placeholder_card">{{column}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-primary" (click)="addColumn(i)">+</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="addRow()">+</button>
+    </div>
+  </div>
+</div>
