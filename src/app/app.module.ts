@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SidePanelComponent } from './sidePanel/side-panel/side-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidePanelComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    DragDropModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

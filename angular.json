@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,7 +92,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -129,6 +127,6 @@
   },
   "defaultProject": "dell-hack2hire",
   "cli": {
-    "analytics": false
+    "analytics": "d785105c-1891-4326-a26f-4f36fa5eeba1"
   }
 }
