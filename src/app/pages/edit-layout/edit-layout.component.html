@@ -68,6 +68,7 @@
 
                     <div class="example-box" *ngIf="column != 0" cdkDrag>
                       {{getWidgetName(column[0])}}
+
                       <div class="example-handle" cdkDragHandle>
                         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                           <path
@@ -75,6 +76,10 @@
                           </path>
                           <path d="M0 0h24v24H0z" fill="none"></path>
                         </svg>
+
+                      </div>
+                      <div class="example-delete">
+                        <button type="button " class="btn btn-danger" (click)="deleteWidget(i, j)">X</button>
                       </div>
                     </div>
                   </div>

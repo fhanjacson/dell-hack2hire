@@ -101,6 +101,10 @@ export class EditLayoutComponent implements OnInit {
     }
   }
 
+  deleteWidget(x: number, y: number) {
+    this.layouts[x].splice(y, 1);
+  }
+
 
   Save(): void {
 
