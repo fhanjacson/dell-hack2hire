@@ -64,10 +64,10 @@
               <div class="row">
                 <div class="col" *ngFor="let column of rows; let j = index">
                   <div cdkDropList (cdkDropListDropped)="drop($event, j)" [cdkDropListData]="rows"
-                    class="placeholder_card"> {{rows}}
+                    class="placeholder_card">
 
                     <div class="example-box" *ngIf="column != 0" cdkDrag>
-                      WidgetName
+                      {{getWidgetName(column[0])}}
                       <div class="example-handle" cdkDragHandle>
                         <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                           <path

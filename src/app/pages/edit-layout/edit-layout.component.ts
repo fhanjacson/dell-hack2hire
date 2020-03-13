@@ -95,12 +95,12 @@ export class EditLayoutComponent implements OnInit {
 
   getWidgetName(id: number) {
     for (let i = 0; i < this.widgetsObject.length; i++) {
-      if (this.widgetsObject[i]["id"] === id) {
-        console.log(this.widgetsObject[i]["widget_name"]);
+      if (this.widgetsObject[i].id === id) {
+        return this.widgetsObject[i].widget_name;
       }
     }
-    return this.widgetsObject[this.widgetsObject.findIndex].widget_name;
   }
+
 
   Save(): void {
 
