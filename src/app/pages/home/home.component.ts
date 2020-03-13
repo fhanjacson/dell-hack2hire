@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { Observable } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
     await this.service.getActiveLayout().subscribe(value => {
       this.activeLayoutConfig = JSON.parse(value[0].layout_config);
       console.log(this.activeLayoutConfig);
+      this.getWidgetList();
     });
   }
 
@@ -31,24 +33,31 @@ export class HomeComponent implements OnInit {
       //   if (this.activeLayoutConfig)
       //     this.asd.push(value[i].id, value[i].url);
       // }
+      //this.getWidgetUrl(this.activeLayoutConfig[0][0][0]);
     });
 
     // this.widgetList = this.service.getWidgets();
   }
 
-  // getWidgetUrl(id: number) {
-  //   for (let i = 0; i < this.widgetList.length; i++) {
-  //     if (this.widgetList[i][0] === id) {
-  //       return this.widgetList[i][1];
-  //     }
-  //   }
-  // }
+  getWidgetUrl(id: number) {
+    for (let i = 0; i < this.widgetList.length; i++) {
+      if (this.widgetList[i].id === id) {
+        this.asd.push(this.widgetList[i].id, this.widgetList[i].url);
+        console.log(this.asd);
+        return this.widgetList[i].url;
+      }
+    }
+  }
 
-  constructor(private service: AdminService) { }
+  transform(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
-  async ngOnInit() {
-    await this.getWidgetList();
-    await this.getActiveLayout();
+  constructor(private service: AdminService, private sanitizer: DomSanitizer) { }
+
+  ngOnInit() {
+    this.getWidgetListz();
+    this.getActiveLayout();
     console.log("loaded")
     console.log(this.widgetList);
   }
