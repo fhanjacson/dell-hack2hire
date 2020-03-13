@@ -103,6 +103,9 @@ export class EditLayoutComponent implements OnInit {
 
   deleteWidget(x: number, y: number) {
     this.layouts[x].splice(y, 1);
+    if (this.layouts[x].length === 0) {
+      this.layouts.splice(x, 1);
+    }
   }
 
 
