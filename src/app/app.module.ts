@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SelectLayoutComponent } from './pages/select-layout/select-layout.component';
 import { EditLayoutComponent } from './pages/edit-layout/edit-layout.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EditLayoutComponent } from './pages/edit-layout/edit-layout.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

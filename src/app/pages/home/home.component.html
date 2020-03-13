@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div class="container">
+  <div class="row my-3" *ngFor="let rows of activeLayoutConfig; let i = index">
+    <div class="col">
+      <div class="row">
+        <div class="col" *ngFor="let column of rows; let j = index">
+          <div class="placeholder_card"> {{rows}}
+            <div class="example-box" *ngIf="column != 0">
+              a{{ (widgetList[i]) }} fgdsgdf
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

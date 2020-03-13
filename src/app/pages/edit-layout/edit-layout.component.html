@@ -1,3 +1,40 @@
+<!-- The Modal -->
+<div class="modal" id="myModal" [ngClass]="{'show': showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Save this layout</h4>
+        <button type="button" #closebutton class="close" (click)="showModal = false"
+          data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <label>Layout Name</label>
+        <input type="text" class="form-control mb-2" id="layoutName" name="layoutName" [(ngModel)]="layoutName"
+          placeholder="Layout Name">
+        <label>Description</label>
+        <input type="text" class="form-control mb-2" id="Des" name="Des" [(ngModel)]="Des" placeholder="Description">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="showModal = false" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="Save()" data-dismiss="modal">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <button type="button" class="btn btn-primary" (click)="showModal = true" data-toggle="modal" data-target="#myModal">
+    Save
+  </button>
+</nav>
+
 <div class="container">
   <div cdkDropListGroup>
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkDragDrop, transferArrayItem, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
-import { AdminService } from '../admin.service';
+import { AdminService, Layout } from '../admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -12,6 +12,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./edit-layout.component.scss']
 })
 export class EditLayoutComponent implements OnInit {
+
+  //modal
+  Des: string;
+  layoutName: string = '';
+  showModal: Boolean;
+  @ViewChild('closebutton') closebutton;
 
   widgetsObject;
   widgetsx = [];
@@ -42,10 +48,7 @@ export class EditLayoutComponent implements OnInit {
     console.log(event.container.data[asd][0]);
     if (event.container.data[asd][0] === 0) {
       console.log('success');
-      // event.container.data[asd] = [event.previousContainer.data[event.previousIndex]];
-
       if (typeof event.previousContainer.data[event.previousIndex] === 'number') {
-        console.log(event.container.data[asd]);
         console.log([event.previousContainer.data[event.previousIndex]]);
         event.container.data[asd] = [event.previousContainer.data[event.previousIndex]];
       } else {
@@ -65,6 +68,7 @@ export class EditLayoutComponent implements OnInit {
     this.data.getWidgets().subscribe(value => {
       this.widgetsObject = value;
       for (let i = 0; i < value.length; i++) {
+        this.listOfWidgets.push(value[i].id);
         this.widgetsx.push(value[i].widget_name);
       }
       console.log(this.widgetsx);
@@ -79,6 +83,8 @@ export class EditLayoutComponent implements OnInit {
         console.log('2');
         if (value[i].id === this.layoutID) {
           console.log('3');
+          this.layoutName = value[i].layout_name;
+          this.Des = value[i].layout_description;
           this.layouts = JSON.parse(value[i].layout_config);
         }
       }
@@ -96,6 +102,25 @@ export class EditLayoutComponent implements OnInit {
     return this.widgetsObject[this.widgetsObject.findIndex].widget_name;
   }
 
+  Save(): void {
+
+    if (this.layoutID === 0) {
+      const newLayout = {} as Layout;
+      newLayout.layout_config = this.layouts;
+      newLayout.layout_description = this.Des;
+      newLayout.layout_name = this.layoutName;
+      this.data.addNewLayout(newLayout);
+    } else {
+      const updatedLaoyut = {} as Layout;
+      updatedLaoyut.id = this.layoutID;
+      updatedLaoyut.layout_config = this.layouts;
+      updatedLaoyut.layout_description = this.Des;
+      updatedLaoyut.layout_name = this.layoutName;
+      this.data.updateLayout(updatedLaoyut);
+    }
+    this.closebutton.nativeElement.click();
+  }
+
   constructor(private data: AdminService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -108,7 +133,11 @@ export class EditLayoutComponent implements OnInit {
     // });
     this.route.params.subscribe(params => {
       this.layoutID = parseInt(params.id);
-      this.getLayouts();
+      if (this.layoutID !== 0) {
+        this.getLayouts();
+      } else {
+        this.layouts = [[[0]]];
+      }
 
     });
     this.getWidgets();
